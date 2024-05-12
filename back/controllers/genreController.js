@@ -1,12 +1,17 @@
 const { Genre } = require('../models/models')
 const ApiError = require('../error/ApiError')
+const uuid = require('uuid');
+const path = require('path');
 
 
 class GenreController {
   async create(req, res, next) {
     try {
       const {genre} = req.body
-      const data = await Genre.create({genre})
+      const { cover_image } = req.files;
+      let fileName = uuid.v4() + '.jpg';
+      cover_image.mv(path.resolve(__dirname, '..', 'static', fileName));
+      const data = await Genre.create({genre, cover_image: fileName})
       return res.json(data)
     } catch (e) {
       next(ApiError.badRequest(e.message))

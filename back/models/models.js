@@ -25,6 +25,7 @@ const Book = sequelize.define('Book', {
 const Genre = sequelize.define('Genre', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   genre: { type: DataTypes.STRING, allowNull: false },
+  cover_image: { type: DataTypes.STRING, allowNull: false },
 });
 
 

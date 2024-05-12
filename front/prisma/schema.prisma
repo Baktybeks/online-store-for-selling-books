@@ -28,7 +28,7 @@ model Books {
   isNew             Boolean   @default(false)
   discount          Boolean   @default(false)
   price             Int
-  genre             Genres     @relation(fields: [genreId], references: [id])
+  genre             Genres     @relation(fields: [GenreId], references: [id])
   GenreId           Int
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
@@ -37,6 +37,7 @@ model Books {
 model Genres {
   id                Int     @id @default(autoincrement())
   genre             String
+  cover_image       String
   books             Books[]
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
