@@ -1,0 +1,87 @@
+@import "../../app/styles/mixin";
+
+.nameHeader {
+  padding-top: 60px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 36px;
+  color: #000;
+}
+
+.blockImage {
+  width: 212.45px;
+  height: 212px;
+  border-radius: 300px;
+  background: #F1EEE3;
+  display: grid;
+  place-items: center;
+  padding-top: 40px;
+  overflow: hidden;
+}
+
+.blockText {
+  width: 100px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #000;
+  margin: 14px auto;
+}
+
+.inputRange {
+  -webkit-appearance: none;
+  width: 500px;
+  height: 10px;
+  background: #ddd;
+  border-radius: 10px;
+  outline: none;
+  margin: 10px 0;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 10px;
+    background: #111111;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.images {
+  width: 120.25px;
+  height: 187.09px;
+}
+
+.blockButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.buttonPrev, .buttonNext {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.buttonPrev {
+  transform: rotate(180deg);
+}

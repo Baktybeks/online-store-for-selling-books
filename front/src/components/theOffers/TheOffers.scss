@@ -1,0 +1,33 @@
+.sliderOffers {
+
+  .slider {
+    width: 450px !important;
+  }
+
+  .slick-arrow {
+    display: none !important;
+  }
+
+  .slick-list {
+    height: 270px !important;
+  }
+
+  .slick-arrow {
+    display: none !important;
+  }
+
+  .slick-slide {
+    display: flex !important;
+    flex-direction: row;
+    width: 400px !important;
+    height: 270px !important;
+    border-radius: 15px !important;
+    margin-right: 30px;
+    padding-bottom: 20px !important;
+    position: relative !important;
+
+    :focus-visible {
+      outline: none !important;
+    }
+  }
+}

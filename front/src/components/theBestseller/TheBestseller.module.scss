@@ -1,0 +1,90 @@
+.Bestseller {
+  height: 500px;
+  background: #FBDBE8;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 100px;
+  position: relative;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #111111;
+}
+
+.scidcka {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #111111;
+}
+
+.nameBestseller {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 56px;
+  color: #111111;
+}
+
+.textName {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 56px;
+  color: #111111;
+}
+
+.linckBestseller {
+  width: 203px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #111111;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  color: #fff;
+}
+
+.imageOne {
+  width: 157px;
+  height: 240px;
+  background-image: url("./icons/imageTheree.png");
+  background-size: cover;
+  position: absolute;
+  top: 75px;
+  right: 380px;
+}
+
+.imageTwo {
+  width: 263px;
+  height: 402px;
+  background-image: url("./icons/imageTwo.png");
+  background-size: cover;
+  position: absolute;
+  top: 35px;
+  right: 145px;
+  z-index: 5;
+}
+
+.imageThere {
+  width: 123px;
+  height: 188px;
+  background-image: url("./icons/imageOne.png");
+  background-size: cover;
+  position: absolute;
+  bottom: 40px;
+  right: 65px;
+
+}
