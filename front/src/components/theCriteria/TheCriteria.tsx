@@ -17,16 +17,18 @@ const TheCriteria = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch('https://freetestapi.com/api/v1/books')
+			const response = await fetch('http://localhost:5000/api/genre/')
 			if (!response.ok) {
 				throw new Error('Unable to fetch posts!')
 			}
 			const jsonData = await response.json()
-			setData(jsonData)
+			setData(jsonData.rows)
 		}
 
 		fetchData()
 	}, [])
+
+	console.log(data)
 
 	const settings = {
 		infinite: true,
@@ -60,7 +62,7 @@ const TheCriteria = () => {
 			<h2 className={styles.nameHeader}>Магазин по категориям</h2>
 			<div className='sliderCriteria'>
 				<Slider
-					ref={slider => {
+					ref={(slider: any) => {
 						sliderRef.current = slider
 					}}
 					{...settings}
@@ -68,9 +70,9 @@ const TheCriteria = () => {
 					{data.map((elem: any) => (
 						<div key={elem.id} className={styles.blocBook}>
 							<div className={styles.blockImage}>
-								<img className={styles.images} src={elem.cover_image} alt='image' />
+								<img className={styles.images} src={`http://localhost:5000/${elem.cover_image}`} alt='image' />
 							</div>
-							<div className={styles.blockText}>{elem.genre[0]}</div>
+							<div className={styles.blockText}>{elem.genre}</div>
 						</div>
 					))}
 				</Slider>

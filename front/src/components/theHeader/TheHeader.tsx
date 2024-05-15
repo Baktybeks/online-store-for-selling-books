@@ -13,7 +13,7 @@ const TheHeader = () => {
 	return (
 		<header className={styles.wrapperHeader}>
 			<div className={styles.menu}>
-				<div className={styles.logo}><Logo /></div>
+				<Link href={'/'} className={styles.logo}><Logo /></Link>
 			</div>
 			<div className={styles.linck}>
 				{

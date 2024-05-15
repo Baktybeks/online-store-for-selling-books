@@ -15,12 +15,12 @@ const TheCollection = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch('https://freetestapi.com/api/v1/books')
+			const response = await fetch('http://localhost:5000/api/book/')
 			if (!response.ok) {
 				throw new Error('Unable to fetch posts!')
 			}
 			const jsonData = await response.json()
-			setData(jsonData)
+			setData(jsonData.rows)
 		}
 
 		fetchData()
@@ -49,7 +49,7 @@ const TheCollection = () => {
 		<>
 			<div className={styles.blockSlider}>
 				<div className={styles.blockHeader}>
-					<h2 className={styles.nameSliders}>Самые продаваемые книги</h2>
+					<h2 className={styles.nameSliders}>Последние коллекции</h2>
 					<div className={styles.blockButtons}>
 						<button className={styles.buttonPrev} onClick={previous}>
 							<ArrowRight />
@@ -62,20 +62,22 @@ const TheCollection = () => {
 				<div>
 					<div className='sliderReceipts'>
 						<Slider
-							ref={slider => {
+							ref={(slider :any) => {
 								sliderRef.current = slider
 							}}
 							{...settings}>
-							{data.map((elem: any, index) =>
-								<div key={elem.id}>
-									<img src={elem.cover_image} alt='tower' className={styles.imgesBooks} />
-									<div className={styles.textBooks}>
-										<div className={styles.nameBook}>{elem.author}</div>
-										<div className={styles.renovationBook}>{elem.title}</div>
-										<div className={styles.prise}>100$</div>
+							{data
+								.filter((elem: any) => elem.bestseller)
+								.map((elem: any, index) => (
+									<div key={elem.id}>
+										<img src={`http://localhost:5000/${elem.cover_image}`} alt='tower' className={styles.imgesBooks} />
+										<div className={styles.textBooks}>
+											<div className={styles.nameBook}>{elem.author}</div>
+											<div className={styles.renovationBook}>{elem.title}</div>
+											<div className={styles.prise}>{elem.price} сом</div>
+										</div>
 									</div>
-								</div>
-							)}
+								))}
 						</Slider>
 					</div>
 				</div>

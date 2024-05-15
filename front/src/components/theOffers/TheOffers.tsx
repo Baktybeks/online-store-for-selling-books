@@ -8,6 +8,7 @@ import './TheOffers.scss'
 import styles from './TheOffers.module.scss'
 import Link from 'next/link'
 import AroowLinck from '@/components/theBestseller/icons/AroowLinck'
+import Countdown from "@/components/theOffers/CountDown/CountDown";
 
 const TheOffers = () => {
 	const [data, setData] = useState([])
@@ -16,12 +17,12 @@ const TheOffers = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch('https://freetestapi.com/api/v1/books')
+			const response = await fetch('http://localhost:5000/api/book/')
 			if (!response.ok) {
 				throw new Error('Unable to fetch posts!')
 			}
 			const jsonData = await response.json()
-			setData(jsonData)
+			setData(jsonData.rows)
 		}
 
 		fetchData()
@@ -50,7 +51,7 @@ const TheOffers = () => {
 		<>
 			<div className={styles.blockSlider}>
 				<div className={styles.blockHeader}>
-					<h2 className={styles.nameSliders}>Предложения дня</h2>
+					<h2 className={styles.nameSliders}>Предложения дня <Countdown/></h2>
 					<div className={styles.blockButtons}>
 						<button className={styles.buttonPrev} onClick={previous}>
 							<ArrowRight />
@@ -63,19 +64,19 @@ const TheOffers = () => {
 				<div>
 					<div className='sliderOffers'>
 						<Slider
-							ref={slider => {
+							ref={(slider : any) => {
 								sliderRef.current = slider
 							}}
 							{...settings} className={styles.slider}>
 							{data.map((elem: any, index) =>
 								<div key={elem.id} className={styles.blockInfoBook}>
 									<div className={styles.images}>
-										<img src={elem.cover_image} alt='tower' className={styles.imgesBooks} />
+										<img src={`http://localhost:5000/${elem.cover_image}`} alt='tower' className={styles.imgesBooks} />
 									</div>
 									<div className={styles.textTower}>
 										<div className={styles.nameBook}>{elem.author}</div>
 										<div className={styles.renovationBook}>{elem.title}</div>
-										<div className={styles.prise}>100$</div>
+										<div className={styles.prise}>{elem.price} сом</div>
 										<Link className={styles.linkAdd} href={'/'}>Добавить книгу<AroowLinck /></Link>
 									</div>
 								</div>

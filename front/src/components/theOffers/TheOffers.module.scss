@@ -94,3 +94,16 @@
 .buttonPrev {
   transform: rotate(180deg);
 }
+
+.time {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 36px;
+  color: #F1592B;
+}
+
+.nameSliders {
+  display: flex;
+  flex-direction: row;
+  column-gap: 24px;
+}
