@@ -28,8 +28,6 @@ const TheCriteria = () => {
 		fetchData()
 	}, [])
 
-	console.log(data)
-
 	const settings = {
 		infinite: true,
 		speed: 500,

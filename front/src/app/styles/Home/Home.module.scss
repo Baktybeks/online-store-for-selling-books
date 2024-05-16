@@ -93,3 +93,23 @@
   column-gap: 10px;
   color: #fff;
 }
+
+.shadow {
+  width: 100vw;
+  height: 100vh;
+  position: fixed; /* Use fixed position to cover the entire viewport */
+  top: 0;
+  left: 0;
+  background: rgba(17, 17, 17, 0.5);
+  z-index: 10;
+}
+
+.application {
+  display: block;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}

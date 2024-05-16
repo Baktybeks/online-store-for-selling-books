@@ -17,8 +17,16 @@ const TheHeader = () => {
 			</div>
 			<div className={styles.linck}>
 				{
-					session?.data && (
-						<Link className={styles.textProfile} href='/profile'>Профиль</Link>
+					session.data && (
+						session.data?.user?.name === 'admin' ? (
+							<>
+								<Link className={styles.textLink}
+									  href='/admin'>Профиль</Link>
+								<Link className={styles.textLink}
+									  href='/applications'>Заявки</Link>
+							</>
+						) : <Link className={styles.textLink}
+								  href='/profile'>Профиль</Link>
 					)
 				}
 				{

@@ -1,31 +1,40 @@
-import React from 'react'
+'use client'
+
+import React, {useState} from 'react'
 import TheOpenWorld from '@/components/theOpenWorld/TheOpenWorld'
 import TheCriteria from '@/components/theCriteria/TheCriteria'
 import TheReceipts from '@/components/theReceipts/TheReceipts'
 import TheBestseller from '@/components/theBestseller/TheBestseller'
 import TheOffers from '@/components/theOffers/TheOffers'
 import TheBooksSold from '@/components/theBooksSold/TheBooksSold'
-import styles from './styles/Home/Home.module.scss'
 import TheCollection from '@/components/theCollections/TheCollection'
+import TheAddAplication from "@/components/theAddAplication/TheAddAplication";
+import styles from './styles/Home/Home.module.scss'
 
 
 const Home = () => {
+	const [active, setActive] = useState(false);
+
 	return (
 		<>
+			<div className={styles.shadow}></div>
+			<div className={styles.application}>
+				<TheAddAplication/>
+			</div>
 			<section className={styles.wrapperOpenWorld}>
-				<TheOpenWorld />
+				<TheOpenWorld onActive={setActive}/>
 			</section>
 			<section className={styles.wrapperCriteria}>
 				<TheCriteria />
 			</section>
 			<section className={styles.wrapperBestseller}>
-				<TheBestseller />
+				<TheBestseller onActive={setActive}/>
 			</section>
 			<section className={styles.wrapperReceipts}>
 				<TheReceipts />
 			</section>
 			<section className={styles.wrapperOffers}>
-				<TheOffers />
+				<TheOffers onActive={setActive}/>
 			</section>
 			<section className={styles.wrapperBooksSold}>
 				<TheBooksSold />

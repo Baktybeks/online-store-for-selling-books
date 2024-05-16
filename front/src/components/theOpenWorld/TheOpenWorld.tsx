@@ -4,13 +4,22 @@ import Image from 'next/image'
 import Girl from './icons/pusyka.png'
 import styles from './TheOpenWorld.module.scss'
 
-const TheOpenWorld = () => {
+interface Props {
+	onActive: (value: boolean) => void;
+}
+
+const TheOpenWorld = ({onActive}: Props) => {
+
+	const handleChange = () => {
+		onActive(true);
+	}
+
 	return (
 		<>
 			<div className={styles.openWorld}>
 				<div className={styles.info}>
 					<h1 className={styles.nameHeader}>Откройте мир знаний с нами: ваш интернет-магазин книжных сокровищ!</h1>
-					<Link href={'#'} className={styles.btnServices}>Купить</Link>
+					<Link href={'#'} onClick={handleChange} className={styles.btnServices}>Купить</Link>
 				</div>
 				<div className={styles.image}>
 					<Image src={Girl} alt='image' />

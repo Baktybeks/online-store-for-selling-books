@@ -10,7 +10,11 @@ import Link from 'next/link'
 import AroowLinck from '@/components/theBestseller/icons/AroowLinck'
 import Countdown from "@/components/theOffers/CountDown/CountDown";
 
-const TheOffers = () => {
+interface Props {
+	onActive: (value: boolean) => void;
+}
+
+const TheOffers = ({onActive}: Props) => {
 	const [data, setData] = useState([])
 
 	let sliderRef = useRef<Slider | null>(null)
@@ -47,6 +51,10 @@ const TheOffers = () => {
 		}
 	}
 
+	const handleChange = () => {
+		onActive(true);
+	}
+
 	return (
 		<>
 			<div className={styles.blockSlider}>
@@ -77,7 +85,7 @@ const TheOffers = () => {
 										<div className={styles.nameBook}>{elem.author}</div>
 										<div className={styles.renovationBook}>{elem.title}</div>
 										<div className={styles.prise}>{elem.price} сом</div>
-										<Link className={styles.linkAdd} href={'/'}>Добавить книгу<AroowLinck /></Link>
+										<Link className={styles.linkAdd} onClick={handleChange} href={'/'}>Добавить книгу<AroowLinck /></Link>
 									</div>
 								</div>
 							)}
