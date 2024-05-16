@@ -205,7 +205,7 @@ const PageAdmin = () => {
                 <div className={styles.genders}>
                     <h2 className={styles.nameAdmin}>Таблица номеров жанров</h2>
                     {gender.map((elem: any) => (
-                        <div className={styles.textGendr}><span className={styles.idgendr}>{elem.id}</span>{elem.genre}</div>
+                        <div key={elem.id} className={styles.textGendr}><span className={styles.idgendr}>{elem.id}</span>{elem.genre}</div>
                     ))}
                 </div>
             </div>

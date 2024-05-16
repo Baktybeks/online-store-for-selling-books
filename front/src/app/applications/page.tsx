@@ -21,7 +21,7 @@ const PageApplications = () => {
                 throw new Error('Unable to fetch posts!');
             }
             const applicationsData = await res.json();
-            setApplications(applicationsData.rows)
+            setApplications(applicationsData)
         };
 
         fetchData();

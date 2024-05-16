@@ -6,12 +6,13 @@ import styles from './TheOpenWorld.module.scss'
 
 interface Props {
 	onActive: (value: boolean) => void;
+	active: boolean;
 }
 
-const TheOpenWorld = ({onActive}: Props) => {
+const TheOpenWorld = ({onActive, active}: Props) => {
 
 	const handleChange = () => {
-		onActive(true);
+		onActive(!active);
 	}
 
 	return (
@@ -19,7 +20,7 @@ const TheOpenWorld = ({onActive}: Props) => {
 			<div className={styles.openWorld}>
 				<div className={styles.info}>
 					<h1 className={styles.nameHeader}>Откройте мир знаний с нами: ваш интернет-магазин книжных сокровищ!</h1>
-					<Link href={'#'} onClick={handleChange} className={styles.btnServices}>Купить</Link>
+					<button onClick={handleChange} className={styles.btnServices}>Купить</button>
 				</div>
 				<div className={styles.image}>
 					<Image src={Girl} alt='image' />

@@ -5,12 +5,13 @@ import AroowLinck from '@/components/theBestseller/icons/AroowLinck'
 
 interface Props {
 	onActive: (value: boolean) => void;
+	active: boolean
 }
 
-const TheBestseller = ({onActive}: Props) => {
+const TheBestseller = ({onActive, active}: Props) => {
 
 	const handleChange = () => {
-		onActive(true);
+		onActive(!active);
 	}
 
 	return (
@@ -19,7 +20,7 @@ const TheBestseller = ({onActive}: Props) => {
 				<p className={styles.text}><span className={styles.scidcka}>Скидка 20%</span> на избранные книги</p>
 				<h2 className={styles.nameBestseller}><span className={styles.textName}>Бестселлер</span><br /> Нехудожественные
 					книги!</h2>
-				<Link href={'/'} onClick={handleChange} className={styles.linckBestseller}>Купить сейчас <AroowLinck /></Link>
+				<button onClick={handleChange} className={styles.linckBestseller}>Купить сейчас <AroowLinck /></button>
 			</div>
 			<ul className={styles.imgBestseller}>
 				<li className={styles.imageOne}></li>
