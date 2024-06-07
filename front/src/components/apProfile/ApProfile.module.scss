@@ -1,0 +1,34 @@
+.hello {
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.user {
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.ok, .not, .wait {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2fa10a;
+}
+
+.not, .num {
+  color: red;
+}
+
+.wait {
+  color: #0095e5;
+}

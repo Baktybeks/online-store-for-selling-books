@@ -5,29 +5,32 @@ import styles from "@/app/styles/admin/Admin.module.scss";
 
 interface Props {
     processed: boolean;
+    approved: boolean;
 }
 
 
 const PageApplications = () => {
     const [applications, setApplications] = useState<any>([]);
-    const [newDirection, setNewDirection] = useState<Props>({
-        processed: true,
-    });
+    const [newDirection, setNewDirection] = useState<any>();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await fetch('http://localhost:5000/api/application/');
-            if (!res.ok) {
-                throw new Error('Unable to fetch posts!');
-            }
-            const applicationsData = await res.json();
-            setApplications(applicationsData)
-        };
+        useEffect(() => {
+            const fetchData = async () => {
+                const res = await fetch('http://localhost:5000/api/application/');
+                const resData = await fetch('http://localhost:5000/api/book/');
+                if (!res.ok) {
+                    throw new Error('Unable to fetch posts!');
+                }
+                const applicationsData = await res.json();
+                const appData = await resData.json();
+                setApplications(applicationsData);
+                setNewDirection(appData.rows);
+            };
 
-        fetchData();
-    }, []);
+            fetchData();
+        }, []);
 
-    const handleDelete = async (index: string) => {
+
+        const handleDelete = async (index: string) => {
         try {
             const response = await fetch(`http://localhost:5000/api/application/${index}`, {
                 method: 'DELETE'
@@ -44,21 +47,26 @@ const PageApplications = () => {
     };
 
 
-    console.log(applications)
-    const handleSubmit = async (index: string) => {
+    const handleSubmit = async (index: string, type: 'processed' | 'approved') => {
         try {
+            const updatedApplications = applications.map((app: any) => {
+                if (app.id === index) {
+                    return { ...app, processed: type === 'processed', approved: type === 'approved' };
+                }
+                return app;
+            });
+            setApplications(updatedApplications);
+
             const formData = new FormData();
-            formData.append('processed', newDirection.processed.toString());
+            formData.append('processed', (type === 'processed').toString());
+            formData.append('approved', (type === 'approved').toString());
 
             const response = await fetch(`http://localhost:5000/api/application/${index}`, {
                 method: 'PUT',
                 body: formData,
             });
 
-            if (response.ok) {
-                setApplications((prevApplications: any) => prevApplications.filter((app: any) => app.id !== index));
-                console.log('добавлен объект');
-            } else {
+            if (!response.ok) {
                 console.error('Ошибка при добавлении нового направления:', response.statusText);
             }
         } catch (error) {
@@ -70,22 +78,50 @@ const PageApplications = () => {
         <div className={styles.wrapperAdmin}>
             <h1 className={styles.nameAdmin}>Заявки пользователей</h1>
             <ul className={styles.blockList}>
-                {applications.map((elem: any) => (
-                    <li key={elem.id} className={styles.infoList}>
+                {applications.map((elemAp: any) => (
+                    <li key={elemAp.id} className={styles.infoList}>
                         <div className={styles.blockInfo}>
-                            <h2 className={styles.name}>{elem.name}</h2>
-                            <p className={styles.email}>{elem.email}</p>
+                            <h2 className={styles.name}>{elemAp.name}</h2>
+                            <p className={styles.email}>тел: {elemAp.phone}</p>
                             <div className={styles.checboxInfo}>
+                                {newDirection.map((elemData: any) => {
+                                    if (elemData.id === elemAp.ProductId) {
+                                        return (
+                                            <div key={elemData.id}>
+                                                <img src={`http://localhost:5000/${elemData.cover_image}`} alt='tower' className={styles.imgesBooks} />
+                                                <li className={styles.product}>Товар: {elemData.title}</li>
+                                                <li className={styles.product}>Товар: {elemData.author}</li>
+                                                <li className={styles.summa}>Сумма: {elemData.price} сом</li>
+                                            </div>
+                                        )
+                                    }
+                                })}
                                 <div className={styles.checboxBlock}>
-                                    <input type='checkbox' name='processed' checked={elem.processed}
-                                           onClick={() => handleSubmit(elem.id)}
-                                           className={styles.checkbox}/>
+                                    <input
+                                        type='radio'
+                                        name={`status-${elemAp.id}`}
+                                        checked={elemAp.processed}
+                                        onChange={() => handleSubmit(elemAp.id, 'processed')}
+                                        className={styles.checkbox}
+                                    />
                                     <p className={styles.textInput}>
                                         Подтверждение заявки
                                     </p>
                                 </div>
+                                <div className={styles.checboxBlock}>
+                                    <input
+                                        type='radio'
+                                        name={`status-${elemAp.id}`}
+                                        checked={elemAp.approved}
+                                        onChange={() => handleSubmit(elemAp.id, 'approved')}
+                                        className={styles.checkbox}
+                                    />
+                                    <p className={styles.textInput}>
+                                        Отклонение заявки
+                                    </p>
+                                </div>
                             </div>
-                            <button className={styles.delete} onClick={() => handleDelete(elem.id)}>Удалить</button>
+                            <button className={styles.delete} onClick={() => handleDelete(elemAp.id)}>Удалить</button>
                         </div>
                     </li>
                 ))}

@@ -10,12 +10,12 @@ import styles from './TheHeader.module.scss'
 const TheHeader = () => {
 	const session = useSession()
 
-	console.log(session)
-
 	return (
 		<header className={styles.wrapperHeader}>
 			<div className={styles.menu}>
 				<Link href={'/'} className={styles.logo}><Logo /></Link>
+				<Link className={styles.textLink}
+					  href='/allBook'>Все книги</Link>
 			</div>
 			<div className={styles.linck}>
 				{

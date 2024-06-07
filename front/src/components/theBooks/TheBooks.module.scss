@@ -1,0 +1,94 @@
+.blockBooks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nameBook {
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.renovationBook {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: left;
+}
+
+.prise {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #F1592B;
+  margin-top: 15px;
+}
+
+.imgesBooks {
+  width: 212px;
+  height: 330px;
+}
+
+.textBooks {
+  margin-top: 23px;
+}
+
+.inputSearch {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.search {
+  position: relative;
+}
+
+.btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.btnServices {
+  width: 346px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 30px;
+  font-size: 16px;
+  line-height: 14px;
+  background: #F1592B;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.shadow {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(17, 17, 17, 0.5);
+  z-index: 10;
+}
+
+.application {
+  display: block;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.shadowNot,  .applicationNot{
+  display: none;
+}
