@@ -20,6 +20,7 @@ const Book = sequelize.define('Book', {
   isNew: { type: DataTypes.BOOLEAN, defaultValue: false },
   discount: { type: DataTypes.BOOLEAN, defaultValue: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
+  GenreId: { type: DataTypes.INTEGER, allowNull: false },
 });
 
 const Genre = sequelize.define('Genre', {
@@ -36,10 +37,16 @@ const Application = sequelize.define('Application', {
   paymentMethod: { type: DataTypes.STRING, allowNull: false },
   delivery: { type: DataTypes.BOOLEAN, defaultValue: false },
   processed: { type: DataTypes.BOOLEAN, defaultValue: false },
+  BookId: { type: DataTypes.INTEGER, allowNull: false },
 });
 
-Genre.hasMany(Book);
-Book.belongsTo(Genre);
+
+
+Genre.hasMany(Book, { as: 'Genre', foreignKey: 'GenreId' });
+Book.belongsTo(Genre, { as: 'Genre', foreignKey: 'GenreId'});
+
+Book.hasMany(Application, { as: 'Book', foreignKey: 'BookId' });
+Application.belongsTo(Book, { as: 'Book', foreignKey: 'BookId'});
 
 module.exports = {
   User, Book, Application, Genre
