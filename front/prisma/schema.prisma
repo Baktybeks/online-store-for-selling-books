@@ -51,6 +51,7 @@ model Applications {
   paymentMethod     String
   delivery          Boolean   @default(false)
   processed         Boolean   @default(false)
+  approved          Boolean   @default(false)
   book              Books     @relation(fields: [BookId], references: [id])
   BookId            Int
   createdAt         DateTime  @default(now())

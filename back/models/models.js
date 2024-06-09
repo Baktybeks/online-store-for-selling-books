@@ -37,6 +37,7 @@ const Application = sequelize.define('Application', {
   paymentMethod: { type: DataTypes.STRING, allowNull: false },
   delivery: { type: DataTypes.BOOLEAN, defaultValue: false },
   processed: { type: DataTypes.BOOLEAN, defaultValue: false },
+  approved: { type: DataTypes.BOOLEAN, defaultValue: false },
   BookId: { type: DataTypes.INTEGER, allowNull: false },
 });
 
