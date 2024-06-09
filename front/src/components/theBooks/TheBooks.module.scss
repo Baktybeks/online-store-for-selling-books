@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  row-gap: 24px;
 }
 
 .nameBook {
@@ -53,8 +54,8 @@
 }
 
 .btnServices {
-  width: 346px;
-  height: 50px;
+  width: 100%;
+  height: 42px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -65,6 +66,7 @@
   background: #F1592B;
   color: #fff;
   border: none;
+  margin-top: 16px;
   cursor: pointer;
 }
 
