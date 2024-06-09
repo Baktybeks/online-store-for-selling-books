@@ -1,16 +1,14 @@
 'use client'
 
 import React, {useEffect, useState} from 'react';
-import styles from './ApProfile.module.scss'
 import {useSession} from "next-auth/react";
+import styles from './ApProfile.module.scss'
 
 
 const ApProfile = () => {
     const [applications, setApplications] = useState<any>([]);
-    // const [sum, setSum] = useState(0);
     const session = useSession();
 
-    console.log(applications)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,7 +42,7 @@ const ApProfile = () => {
     const totalSum = applications.reduce((acc: number, elem: any) => acc + Number(elem.Book.price), 0);
     return (
         <div>
-            {session?.data &&
+            {session.data?.user?.name &&
                 <div className={styles.hello}>
                     <ul className={styles.user}>
                         <li>Здравствуйте {session.data?.user?.name} у вас</li>
@@ -56,7 +54,7 @@ const ApProfile = () => {
                     {
                         applications
                             .filter((elem: any) => session.data?.user?.name === elem.name)
-                            .map((elem: any, index: number) => {
+                            .map((elem: any) => {
                                 return (
                                     <ul key={elem.id} className={styles.list}>
                                         {session.data?.user?.name === elem.name && (
