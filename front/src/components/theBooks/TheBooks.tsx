@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import styles from './TheBooks.module.scss';
-import classNames from "classnames";
-import TheAddAplication from "@/components/theAddAplication/TheAddAplication";
+
 
 interface Props {
     onActive: (value: boolean) => void;
@@ -14,7 +13,6 @@ const TheBooks = ({onActive, active}: Props) => {
     const [data, setData] = useState([]);
     const [textSearch, setTextSearch] = useState('');
     const [filtered, setFiltered] = useState([]);
-    const [active, setActive] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,7 +22,7 @@ const TheBooks = ({onActive, active}: Props) => {
             }
             const jsonData = await response.json();
             setData(jsonData.rows);
-            setFiltered(jsonData.rows); // Initialize filtered with the full data set
+            setFiltered(jsonData.rows);
         };
 
         fetchData();
@@ -50,10 +48,6 @@ const TheBooks = ({onActive, active}: Props) => {
 
     return (
         <>
-            <div className={classNames(styles.shadow, {[styles.shadowNot]: !active})} onClick={() => setActive(!active)}></div>
-            <div className={classNames(styles.application, {[styles.applicationNot]: !active})}>
-                <TheAddAplication onActive={!setActive} active={active}/>
-            </div>
             <div className={styles.search}>
                 <input
                     type='text'

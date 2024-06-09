@@ -15,3 +15,28 @@
   justify-content: space-between;
   margin-bottom: 40px;
 }
+
+.shadow {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(17, 17, 17, 0.5);
+  z-index: 10;
+}
+
+.application {
+  display: block;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+
+.shadowNot,  .applicationNot{
+  display: none;
+}
