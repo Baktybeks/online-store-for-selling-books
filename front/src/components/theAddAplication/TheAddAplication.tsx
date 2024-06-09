@@ -8,6 +8,7 @@ import styles from './TheAddAplication.module.scss';
 interface Props {
     name: string;
     phone: string;
+    BookId: string;
     paymentMethod: string;
     delivery: boolean;
     processed: boolean;
@@ -16,13 +17,15 @@ interface Props {
 interface PropsActive {
     onActive: (value: boolean) => void;
     active: boolean;
+    BookId: string;
 }
 
-const TheAddAplication = ({onActive, active}: PropsActive) => {
+const TheAddAplication = ({onActive, active, BookId}: PropsActive) => {
     const session = useSession();
     const [newDirection, setNewDirection] = useState<Props>({
         name: '',
         phone: '',
+        BookId: BookId,
         paymentMethod: '',
         delivery: false,
         processed: false,
@@ -46,6 +49,7 @@ const TheAddAplication = ({onActive, active}: PropsActive) => {
             const formData = new FormData();
             formData.append('name', newDirection.name);
             formData.append('phone', newDirection.phone);
+            formData.append('BookId', BookId.toString());
             formData.append('paymentMethod', newDirection.paymentMethod);
             formData.append('delivery', newDirection.delivery.toString());
             formData.append('processed', newDirection.processed.toString());

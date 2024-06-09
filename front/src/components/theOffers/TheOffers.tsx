@@ -12,10 +12,11 @@ import Countdown from "@/components/theOffers/CountDown/CountDown";
 
 interface Props {
 	onActive: (value: boolean) => void;
-	active: boolean
+	active: boolean;
+	setBookId: (value: string) => void;
 }
 
-const TheOffers = ({onActive, active}: Props) => {
+const TheOffers = ({onActive, active, setBookId}: Props) => {
 	const [data, setData] = useState([])
 
 	let sliderRef = useRef<Slider | null>(null)
@@ -52,8 +53,9 @@ const TheOffers = ({onActive, active}: Props) => {
 		}
 	}
 
-	const handleChange = () => {
+	const handleChange = (id: string) => {
 		onActive(!active);
+		setBookId(id)
 	}
 
 	return (
@@ -86,7 +88,7 @@ const TheOffers = ({onActive, active}: Props) => {
 										<div className={styles.nameBook}>{elem.author}</div>
 										<div className={styles.renovationBook}>{elem.title}</div>
 										<div className={styles.prise}>{elem.price} сом</div>
-										<button className={styles.linkAdd} onClick={handleChange} >Добавить книгу<AroowLinck /></button>
+										<button className={styles.linkAdd} onClick={() => handleChange(elem.id)} >Добавить книгу<AroowLinck /></button>
 									</div>
 								</div>
 							)}

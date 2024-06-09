@@ -17,27 +17,28 @@ import classNames from "classnames";
 
 const Home = () => {
 	const [active, setActive] = useState(false);
+	const [bookId, setBookId] = useState<string>('0')
 
 	return (
 		<>
 			<div className={classNames(styles.shadow, {[styles.shadowNot]: !active})} onClick={() => setActive(!active)}></div>
 			<div className={classNames(styles.application, {[styles.applicationNot]: !active})}>
-				<TheAddAplication onActive={setActive} active={active}/>
+				<TheAddAplication onActive={setActive} active={active} BookId={bookId}/>
 			</div>
 			<section className={styles.wrapperOpenWorld}>
-				<TheOpenWorld onActive={setActive} active={active}/>
+				<TheOpenWorld/>
 			</section>
 			<section className={styles.wrapperCriteria}>
 				<TheCriteria />
 			</section>
 			<section className={styles.wrapperBestseller}>
-				<TheBestseller onActive={setActive} active={active}/>
+				<TheBestseller/>
 			</section>
 			<section className={styles.wrapperReceipts}>
 				<TheReceipts />
 			</section>
 			<section className={styles.wrapperOffers}>
-				<TheOffers onActive={setActive} active={active}/>
+				<TheOffers onActive={setActive} active={active} setBookId={setBookId}/>
 			</section>
 			<section className={styles.wrapperBooksSold}>
 				<TheBooksSold />
