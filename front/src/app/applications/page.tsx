@@ -11,19 +11,15 @@ interface Props {
 
 const PageApplications = () => {
     const [applications, setApplications] = useState<any>([]);
-    const [newDirection, setNewDirection] = useState<any>();
 
         useEffect(() => {
             const fetchData = async () => {
                 const res = await fetch('http://localhost:5000/api/application/');
-                const resData = await fetch('http://localhost:5000/api/book/');
                 if (!res.ok) {
                     throw new Error('Unable to fetch posts!');
                 }
                 const applicationsData = await res.json();
-                const appData = await resData.json();
                 setApplications(applicationsData);
-                setNewDirection(appData.rows);
             };
 
             fetchData();
@@ -84,18 +80,13 @@ const PageApplications = () => {
                             <h2 className={styles.name}>{elemAp.name}</h2>
                             <p className={styles.email}>тел: {elemAp.phone}</p>
                             <div className={styles.checboxInfo}>
-                                {newDirection.map((elemData: any) => {
-                                    if (elemData.id === elemAp.ProductId) {
-                                        return (
-                                            <div key={elemData.id}>
-                                                <img src={`http://localhost:5000/${elemData.cover_image}`} alt='tower' className={styles.imgesBooks} />
-                                                <li className={styles.product}>Товар: {elemData.title}</li>
-                                                <li className={styles.product}>Товар: {elemData.author}</li>
-                                                <li className={styles.summa}>Сумма: {elemData.price} сом</li>
-                                            </div>
-                                        )
-                                    }
-                                })}
+                                            <ul>
+                                                <img src={`http://localhost:5000/${elemAp.Book.Genre.cover_image}`} alt='img' className={styles.imgesBooks} />
+                                                <li className={styles.product}>Товар: {elemAp.Book.title}</li>
+                                                <li className={styles.product}>Автор: {elemAp.Book.author}</li>
+                                                <li className={styles.summa}>Сумма: {elemAp.Book.price} сом</li>
+                                            </ul>
+
                                 <div className={styles.checboxBlock}>
                                     <input
                                         type='radio'

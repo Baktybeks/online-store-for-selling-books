@@ -23,7 +23,7 @@ const TheHeader = () => {
 		};
 
 		fetchData();
-	}, []);
+	}, [applications.length]);
 
 	return (
 		<header className={styles.wrapperHeader}>
