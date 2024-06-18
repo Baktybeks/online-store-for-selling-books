@@ -86,7 +86,7 @@ const PageApplications = () => {
                                                 <li className={styles.product}>Автор: {elemAp.Book.author}</li>
                                                 <li className={styles.summa}>Сумма: {elemAp.Book.price} сом</li>
                                                 <li className={styles.product}>Оплата через: {elemAp.paymentMethod}</li>
-                                                <li className={styles.product}>Адрес доставки: {elemAp.address}</li>
+                                                {elemAp.delivery ? <li className={styles.product}>Адрес доставки: {elemAp.address}</li> : ''}
                                             </ul>
 
                                 <div className={styles.checboxBlock}>
