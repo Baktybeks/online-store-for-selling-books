@@ -48,6 +48,7 @@ model Applications {
   id                Int       @id @default(autoincrement())
   name              String
   phone             String
+  address           String
   paymentMethod     String
   delivery          Boolean   @default(false)
   processed         Boolean   @default(false)

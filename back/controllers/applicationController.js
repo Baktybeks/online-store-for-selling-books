@@ -5,8 +5,17 @@ const ApiError = require('../error/ApiError');
 class ApplicationController {
     async create(req, res, next) {
         try {
-            const { name, phone, paymentMethod, delivery, processed, approved, BookId } = req.body;
-            const data = await Application.create({ BookId, name, phone, paymentMethod, delivery, approved, processed });
+            const { name, phone, paymentMethod, delivery, processed, approved, address, BookId } = req.body;
+            const data = await Application.create({
+                BookId,
+                name,
+                phone,
+                paymentMethod,
+                delivery,
+                approved,
+                processed,
+                address
+            });
             return res.json(data);
         } catch(e) {
             next(ApiError.badRequest(e.message));

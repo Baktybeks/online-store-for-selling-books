@@ -34,6 +34,7 @@ const Application = sequelize.define('Application', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, allowNull: false },
   phone: { type: DataTypes.STRING, allowNull: false },
+  address: { type: DataTypes.STRING, allowNull: false },
   paymentMethod: { type: DataTypes.STRING, allowNull: false },
   delivery: { type: DataTypes.BOOLEAN, defaultValue: false },
   processed: { type: DataTypes.BOOLEAN, defaultValue: false },
