@@ -1,14 +1,29 @@
 'use client'
 
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Link from 'next/link'
 import Logo from '../icons/Logo'
 import { signOut, useSession } from 'next-auth/react'
 
 import styles from './TheHeader.module.scss'
+import Corzina from "@/components/theHeader/icons/corzina";
 
 const TheHeader = () => {
-	const session = useSession()
+	const [applications, setApplications] = useState<any>([]);
+	const session = useSession();
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const res = await fetch('http://localhost:5000/api/application/');
+			if (!res.ok) {
+				throw new Error('Unable to fetch posts!');
+			}
+			const applicationsData = await res.json();
+			setApplications(applicationsData);
+		};
+
+		fetchData();
+	}, [applications.length]);
 
 	return (
 		<header className={styles.wrapperHeader}>
@@ -27,8 +42,12 @@ const TheHeader = () => {
 								<Link className={styles.textLink}
 									  href='/applications'>Заявки</Link>
 							</>
-						) : <Link className={styles.textLink}
-								  href='/profile'>Профиль</Link>
+						) : <>
+							<div>
+								{session.data?.user?.name &&  <div className={styles.corzina}><Corzina/><span className={styles.num}>{applications.length}</span></div>}
+							</div>
+							<Link className={styles.textLink} href='/profile'>Профиль</Link>
+						</>
 					)
 				}
 				{

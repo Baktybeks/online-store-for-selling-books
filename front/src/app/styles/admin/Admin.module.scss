@@ -218,6 +218,7 @@
   width: 450px;
   height: 300px;
   display: flex;
+  overflow: auto;
   flex-direction: column;
   gap: 16px;
 }
