@@ -10,6 +10,7 @@ interface Props {
     phone: string;
     BookId: string;
     paymentMethod: string;
+    address: string;
     delivery: boolean;
     processed: boolean;
 }
@@ -27,6 +28,7 @@ const TheAddAplication = ({onActive, active, BookId}: PropsActive) => {
         phone: '',
         BookId: BookId,
         paymentMethod: '',
+        address: '',
         delivery: false,
         processed: false,
     });
@@ -49,6 +51,7 @@ const TheAddAplication = ({onActive, active, BookId}: PropsActive) => {
             const formData = new FormData();
             formData.append('name', newDirection.name);
             formData.append('phone', newDirection.phone);
+            formData.append('address', newDirection.address);
             formData.append('BookId', BookId.toString());
             formData.append('paymentMethod', newDirection.paymentMethod);
             formData.append('delivery', newDirection.delivery.toString());
@@ -100,6 +103,11 @@ const TheAddAplication = ({onActive, active, BookId}: PropsActive) => {
                             <p className={styles.textInput}>
                                 Доставка
                             </p>
+                        </div>
+                        <div className={styles.inputForm}>
+                            <label className={styles.textInput}>Адрес:</label>
+                            <input type='text' name='address' value={newDirection.address} className={styles.inputs}
+                                   placeholder='Адрес' onChange={handleChange}/>
                         </div>
                         <div className={styles.checboxInfo}>
                             <div>
